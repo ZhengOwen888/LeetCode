@@ -21,6 +21,7 @@ vector<vector<int>> LevelOrder(TreeNode* root) {
 
   while (!d.empty()) {
     vector<int> temp;
+    static string r =
 
     for (TreeNode node: d) {
       temp.push_back(node.val);
