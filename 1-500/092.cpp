@@ -73,11 +73,8 @@ int main() {
 
   bool isValidBST1 = isValidBST(&root1);
 
-  cout << "Volume 1: " << boolalpha << (isValidBST1 == false ? "Correct" : "Incorrect") << endl;
+  cout << "IsValid1: " << boolalpha << (isValidBST1 == false ? "Correct" : "Incorrect") << endl;
   cout << "expected: " << false  << "  | actual: " << isValidBST1 << boolalpha << endl;
-
-  // cout << "Volume 2: " << boolalpha << (volume2 == 10) << noboolalpha << endl;
-  // cout << "expected: " << 10 << "  | actual: " << volume2 << endl;
 
   return 0;
 }
