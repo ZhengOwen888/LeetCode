@@ -1,3 +1,5 @@
+// 92. Validate Binary Search Tree
+
 #include <iostream>
 #include <utility>
 #include <vector>
@@ -16,9 +18,9 @@ struct TreeNode {
 
 // pair<isValid, pair<min, max>
 pair<bool, pair<int,int>> dfsBST(TreeNode * node) {
-  if (node == nullptr) // node is null
+  if (!node) // node is null
       return make_pair(true, make_pair(-1, -1));
-  if (node->left == nullptr && node->right == nullptr) // leaf node
+  if (!node->left && !node->right) // leaf node
       return make_pair(true, make_pair(node->val, node->val));
 
   // Check left and right validity and find min max of left and right tree
@@ -27,23 +29,23 @@ pair<bool, pair<int,int>> dfsBST(TreeNode * node) {
 
   if (isLeftValid) {
     // Compare current value with max value left tree
-    if (node->left != nullptr && node->val <= lMinMax.second) {
+    if (node->left && node->val <= lMinMax.second) {
       return make_pair(false, make_pair(-1, -1)); // since it is not valid anyways we don't need to keep track of the min and max of the tree anymore
     }
   } else return make_pair(false, make_pair(-1, -1));
 
   if (isRightValid) {
     // Compare current value with min value right tree
-    if(node->right != nullptr && node->val >= rMinMax.first) {
+    if(node->right && node->val >= rMinMax.first) {
       return make_pair(false, make_pair(-1, -1));
     }
   } else return make_pair(false, make_pair(-1, -1));
 
   // Valid tree
   // compare current val with min val on the left tree
-  auto minVal = node->left == nullptr ? node->val : min(node->val, lMinMax.first);
+  auto minVal = node->left ? min(node->val, lMinMax.first) : node->val;
   // compare current val with max val on the right tree
-  auto maxVal = node->right == nullptr ? node->val : max(node->val, rMinMax.second);
+  auto maxVal = node->right ? max(node->val, rMinMax.second) : node->val;
   return make_pair(true, make_pair(minVal, maxVal));
 }
 
